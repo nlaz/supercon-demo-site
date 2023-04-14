@@ -1,12 +1,12 @@
 import * as api from "@/api";
 import Image from "next/image";
+import Script from "next/script";
 import { getTrackDuration, getDateShort } from "@/utils";
 
 const defaultTrackImage =
   "https://ecr-streams.s3.us-east-2.amazonaws.com/assets/sol-logo.jpg";
 
 const Header = ({ status }) => {
-  console.log(status);
   return (
     <div className="header">
       {status.status === "offline" ? (
@@ -14,7 +14,30 @@ const Header = ({ status }) => {
       ) : (
         <div className="header__live">Live</div>
       )}
+
       <audio controls src="https://s1.evenings.co/s/evenings" />
+
+      <h3 id="header-name">Live 24/7</h3>
+      <Script id="test-script">
+        {`const updateContent = async () => {
+        try {
+          const response = await fetch('https://api.evenings.co/v1/streams/evenings/public');
+          if (!response.ok) {
+            throw new Error('HTTP error! Status: ' + response.status);
+          }
+          const data = await response.json();
+          if (data.status === "online" && data.name) {
+            document.getElementById('header-name').innerText = data.name;
+          } 
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+  
+      updateContent();
+      setInterval(updateContent, 30000);
+        `}
+      </Script>
     </div>
   );
 };
