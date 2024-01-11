@@ -29,7 +29,7 @@ const Track = ({ track }) => {
           src={track.image ?? defaultTrackImage}
           alt={track.title}
           width={370}
-          height={370}
+          height={320}
           style={{ objectFit: "contain" }}
         />
       </div>
