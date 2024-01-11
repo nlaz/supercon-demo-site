@@ -24,10 +24,12 @@ body {
 
 .header__offline {
   color: #7a7a7a;
+  margin-bottom: 12px;
 }
 
 .header__live {
   color: #ff0000;
+  margin-bottom: 12px;
 }
 
 .track {

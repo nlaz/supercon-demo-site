@@ -1,6 +1,5 @@
 import * as api from "@/api";
 import Image from "next/image";
-import Script from "next/script";
 import { getTrackDuration, getDateShort } from "@/utils";
 
 const defaultTrackImage =
@@ -9,35 +8,15 @@ const defaultTrackImage =
 const Header = ({ status }) => {
   return (
     <div className="header">
-      {status.status === "offline" ? (
-        <div className="header__offline">Offline</div>
-      ) : (
+      {status.online ? (
         <div className="header__live">Live</div>
+      ) : (
+        <div className="header__offline">Offline</div>
       )}
 
-      <audio controls src="https://s1.evenings.co/s/evenings" />
-
-      <h3 id="header-name">Live 24/7</h3>
-      <Script id="test-script">
-        {`const updateContent = async () => {
-        try {
-          const response = await fetch('https://api.evenings.co/v1/streams/evenings/public');
-          if (!response.ok) {
-            throw new Error('HTTP error! Status: ' + response.status);
-          }
-          const data = await response.json();
-          if (data.status === "online" && data.name) {
-            document.getElementById('header-name').innerText = data.name;
-          } 
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
-  
-      updateContent();
-      setInterval(updateContent, 30000);
-        `}
-      </Script>
+      {status.online && (
+        <audio controls src="https://media.evenings.co/s/Kwekx1JG0" />
+      )}
     </div>
   );
 };
@@ -85,6 +64,7 @@ export async function getServerSideProps(context) {
 
     return { props: { status, tracks } };
   } catch (e) {
+    console.log("e", e);
     return { props: { status: {}, tracks: [] } };
   }
 }
