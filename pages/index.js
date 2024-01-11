@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getTrackDuration, getDateShort } from "@/utils";
 
 const defaultTrackImage =
-  "https://ecr-streams.s3.us-east-2.amazonaws.com/assets/sol-logo.jpg";
+  "https://evenings.s3.us-east-2.amazonaws.com/images/1703883206523.png";
 
 const Header = ({ status }) => {
   return (
