@@ -30,6 +30,7 @@ const Track = ({ track }) => {
           alt={track.title}
           width={370}
           height={370}
+          style={{ objectFit: "contain" }}
         />
       </div>
       <div className="track__info">
