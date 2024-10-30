@@ -1,7 +1,6 @@
 import Image from "next/image";
 import AudioPlayer from "./AudioPlayer";
-import { getTrackDuration, getDateShort } from "@/utils";
-import { useState } from "react";
+import { getDateShort } from "@/utils";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 
 const getDefaultTrackName = (track) => track.title ?? "Recorded on " + getDateShort(track.createdAt)
@@ -12,8 +11,9 @@ const defaultTrackImage =
 const Track = ({ track }) => {
   const { currentTime, duration, playing, setPlaying, setClickedTime, resetPlayer } =
     useAudioPlayer(`player_${track.id}`);
+
   return (
-    <div className="flex w-full mb-3 bg-black/10 p-5 hover:bg-black/15 shadow-md border border-8 border-black/5 cursor-pointer rounded-sm" onClick={() => setPlaying(!playing)}>
+    <div className="flex w-full mb-3 bg-black/10 p-5 hover:bg-black/20 shadow-md border border-8 border-black/5 cursor-pointer rounded-sm" onClick={() => setPlaying(!playing)}>
       <div className="w-[85px] h-[85px] mr-5">
         <Image src={track.image ?? defaultTrackImage} alt={track.title} width={85} height={85} className="rounded-3xl object-cover h-[85px] border border-gray-500/10" />
       </div>
@@ -21,7 +21,7 @@ const Track = ({ track }) => {
         <div className="jacquard-24-regular text-xl mb-3">
         {getDefaultTrackName(track)}
         </div>
-        <AudioPlayer track={track} currentTime={currentTime} duration={duration} setClickedTime={setClickedTime} />
+        <AudioPlayer track={track} currentTime={currentTime} duration={duration || track.duration} setClickedTime={setClickedTime} />
       </div>
     </div>
   );

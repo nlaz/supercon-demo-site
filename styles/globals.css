@@ -34,6 +34,10 @@ body {
   animation: blink 2s linear infinite;
 }
 
+.drop-shadow {
+  filter: drop-shadow(0 1px 0px rgb(255 255 255 / 0.15));
+}
+
 @keyframes blink {
   0% {
     opacity: 1;
