@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -5,46 +9,39 @@ body {
   font-family: Helvetica Neue, Arial, -apple-system, BlinkMacSystemFont,
     Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
-  background: white;
-  color: black;
+  background: #1F151F;
+  background-image: url('egg-shell.png');
+  color: #F2F2F1;
   display: flex;
   justify-content: center;
+
 }
 
-.container {
-  width: 370px;
-  margin: 80px 0;
+.pixelify-sans-regular {
+  font-family: "Pixelify Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
 }
 
-.header {
-  margin-bottom: 20px;
-  font-size: 24px;
-  text-transform: uppercase;
+.jacquard-24-regular {
+  font-family: "Jacquard 24", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
-.header__offline {
-  color: #7a7a7a;
-  margin-bottom: 12px;
+.blink {
+  animation: blink 2s linear infinite;
 }
 
-.header__live {
-  color: #ff0000;
-  margin-bottom: 12px;
-}
-
-.track {
-  margin-bottom: 50px;
-}
-
-.track__info {
-  margin: 4px 0;
-}
-
-.track__title {
-  font-weight: bold;
-  margin: 2px 0;
-}
-
-.track__audio {
-  margin-top: 12px;
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
