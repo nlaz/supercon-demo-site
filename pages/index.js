@@ -24,7 +24,7 @@ export default function Home({ tracks, channels }) {
           <span className="text-black/80 text-xl ml-1">About</span>
         </Link>
 
-        <div className="flex">
+        <div className="flex mt-5">
           {channels.map((channel) => (
             <LivePlayer channel={channel} key={channel.id} />
           ))}
@@ -47,7 +47,6 @@ export async function getServerSideProps(context) {
   try {
     const channels = await api.fetchChannels();
     const tracks = await api.fetchTracks();
-    console.log(tracks);
 
     return { props: { channels, tracks: tracks.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) } };
   } catch (e) {
