@@ -1,7 +1,6 @@
 
 const defaultTrackImage = "https://evenings.s3.us-east-2.amazonaws.com/images/1703883206523.png";
 
-
 const getArcPath = (arcSize, rotation) => {
   const radius = 45;
   const centerX = 50;
@@ -22,7 +21,7 @@ const getArcPath = (arcSize, rotation) => {
     Z
   `;
 }
-const TrackImage = ({ track, playing }) => {
+const ImageViewer = ({ image, playing }) => {
   const arcPath1 = getArcPath(30, 40);
   const arcPath2 = getArcPath(30, 40 + 180);
   const arcPath3 = getArcPath(5, 55 + 180);
@@ -38,7 +37,7 @@ const TrackImage = ({ track, playing }) => {
           </mask>
         </defs>
 
-        <image href={track.image ?? defaultTrackImage} width="100" height="100" mask="url(#circleMask)" preserveAspectRatio="xMidYMid slice">
+        <image href={image ?? defaultTrackImage} width="100" height="100" mask="url(#circleMask)" preserveAspectRatio="xMidYMid slice">
           {playing && (
             <animateTransform
               attributeName="transform"
@@ -94,4 +93,4 @@ const TrackImage = ({ track, playing }) => {
   );
 };
 
-export default TrackImage;
+export default ImageViewer;

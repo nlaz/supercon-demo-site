@@ -1,7 +1,7 @@
 import AudioPlayer from "./AudioPlayer";
 import { getDateShort } from "@/utils";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
-import TrackImage from "./TrackImage";
+import ImageViewer from "./ImageViewer";
 
 const getDefaultTrackName = (track) => track.title ?? "Recorded on " + getDateShort(track.createdAt);
 
@@ -14,7 +14,7 @@ const Track = ({ track }) => {
       onClick={() => setPlaying(!playing)}
     >
       <div className="w-[90px] h-[90px] mr-5">
-        <TrackImage track={track} playing={playing} />
+        <ImageViewer image={track?.image} playing={playing} />
       </div>
       <div className="flex flex-col flex-1">
         <div className="jacquard-24-regular text-xl mb-3">{getDefaultTrackName(track)}</div>
