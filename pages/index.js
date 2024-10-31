@@ -40,7 +40,7 @@ export default function Home({ tracks, channels }) {
   };
 
   return (
-    <div className="w-100 bg-fuchsia-950/15 pixelify-sans-regular w-screen min-h-screen flex justify-center py-20">
+    <div className="w-100 bg-fuchsia-900/15 pixelify-sans-regular w-screen min-h-screen flex justify-center py-20">
       <Head>
         <title>Boogie Woogie Supercon 2024</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,7 +52,7 @@ export default function Home({ tracks, channels }) {
           Boogie Woogie <span className="text-orange-500">Supercon 2024</span>
         </h1>
 
-        <Link className="absolute right-20 top-16 flex items-center drop-shadow" href="about">
+        <Link className="absolute top-10 flex justify-center lg:justify-end right-0 left-0 lg:right-20 lg:top-16 flex items-center drop-shadow" href="about">
           <CircleHelp className="text-black/80" />
           <span className="text-black/80 text-xl ml-1">About</span>
         </Link>
@@ -64,7 +64,7 @@ export default function Home({ tracks, channels }) {
         </div>
 
         <div className="pixelify-sans-regular text-black/80 mt-6 mb-3 text-2xl drop-shadow text-center">Recorded music</div>
-        <div className="max-w-lg mt-2">
+        <div className="max-w-lg mt-2 px-3 lg:px-0">
           {tracks.map((track) => (
             <div key={track.id} ref={(el) => (trackRefs.current[track.id] = el)}>
               <Track track={track} onClick={() => scrollToTrack(track.id)} />
