@@ -48,7 +48,7 @@ export default function Home({ tracks, channels }) {
         <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet" />
       </Head>
       <div className="flex flex-col max-w-[520px] w-full">
-        <h1 className="jacquard-24-regular text-white/85 drop-shadow text-4xl text-center">
+        <h1 className="jacquard-24-regular text-white/85 drop-shadow text-3xl lg:text-4xl text-center">
           Boogie Woogie <span className="text-orange-500">Supercon 2024</span>
         </h1>
 
