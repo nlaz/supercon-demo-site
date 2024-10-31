@@ -55,7 +55,7 @@ const ImageViewer = ({ image, playing }) => {
           fill="white"
           opacity="0.20"
           stroke="white"
-          stroke-width="4"
+          strokeWidth="4"
           mask="url(#circleMask)"
         />
 
@@ -64,7 +64,7 @@ const ImageViewer = ({ image, playing }) => {
           fill="white"
           opacity="0.20"
           stroke="white"
-          stroke-width="4"
+          strokeWidth="4"
           mask="url(#circleMask)"
         />
 
@@ -73,7 +73,7 @@ const ImageViewer = ({ image, playing }) => {
           fill="white"
           opacity="0.2"
           stroke="white"
-          stroke-width="4"
+          strokeWidth="4"
           mask="url(#circleMask)"
         />
 
@@ -82,12 +82,12 @@ const ImageViewer = ({ image, playing }) => {
           fill="white"
           opacity="0.2"
           stroke="white"
-          stroke-width="4"
+          strokeWidth="4"
           mask="url(#circleMask)"
         />
 
-        <circle cx="50" cy="50" r="45" fill="none" stroke="white" stroke-opacity="0.2" strokeWidth="2" />
-        <circle cx="50" cy="50" r="15" fill="none" stroke="white" stroke-opacity="0.3" strokeWidth="5" />
+        <circle cx="50" cy="50" r="45" fill="none" stroke="white" strokeOpacity="0.2" strokeWidth="2" />
+        <circle cx="50" cy="50" r="15" fill="none" stroke="white" strokeOpacity="0.3" strokeWidth="5" />
       </svg>
     </div>
   );

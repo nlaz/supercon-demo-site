@@ -1,11 +1,44 @@
 import * as api from "@/api";
+import React, { useEffect, useRef } from "react";
 import LivePlayer from "@/components/LivePlayer";
 import Track from "@/components/Track";
 import Head from "next/head";
 import { CircleHelp } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Home({ tracks, channels }) {
+  const trackRefs = useRef({});
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (hash && trackRefs.current[hash]) {
+        trackRefs.current[hash].scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+    };
+
+    handleHashChange();
+
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
+
+  const scrollToTrack = (trackId) => {
+    if (trackRefs.current[trackId]) {
+      window.location.hash = trackId;
+
+      trackRefs.current[trackId].scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  };
+
   return (
     <div className="w-100 bg-fuchsia-950/15 pixelify-sans-regular w-screen min-h-screen flex justify-center py-20">
       <Head>
@@ -14,13 +47,13 @@ export default function Home({ tracks, channels }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet" />
       </Head>
-      <div className="flex flex-col">
+      <div className="flex flex-col max-w-[520px] w-full">
         <h1 className="jacquard-24-regular text-white/85 drop-shadow text-4xl text-center">
           Boogie Woogie <span className="text-orange-500">Supercon 2024</span>
         </h1>
 
         <Link className="absolute right-20 top-16 flex items-center drop-shadow" href="about">
-          <CircleHelp className="text-black/80"/>
+          <CircleHelp className="text-black/80" />
           <span className="text-black/80 text-xl ml-1">About</span>
         </Link>
 
@@ -30,12 +63,12 @@ export default function Home({ tracks, channels }) {
           ))}
         </div>
 
-        <div className="pixelify-sans-regular text-black/80 mt-6 mb-3 text-2xl drop-shadow text-center">
-          Recorded music
-        </div>
-        <div className="max-w-lg w-[520px] mt-2">
+        <div className="pixelify-sans-regular text-black/80 mt-6 mb-3 text-2xl drop-shadow text-center">Recorded music</div>
+        <div className="max-w-lg mt-2">
           {tracks.map((track) => (
-            <Track key={track.id} track={track} />
+            <div key={track.id} ref={(el) => (trackRefs.current[track.id] = el)}>
+              <Track track={track} onClick={() => scrollToTrack(track.id)} />
+            </div>
           ))}
         </div>
       </div>
