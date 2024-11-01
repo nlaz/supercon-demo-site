@@ -41,18 +41,15 @@ export default function Home({ tracks, channels }) {
 
   return (
     <div className="w-100 bg-fuchsia-900/15 pixelify-sans-regular w-screen min-h-screen flex justify-center py-20">
-      <Head>
-        <title>Boogie Woogie Supercon 2024</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
-        <link href="https://fonts.googleapis.com/css2?family=Jacquard+24&family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet" />
-      </Head>
       <div className="flex flex-col max-w-[520px] w-full">
+        <Head>
+          <title>My page title</title>
+        </Head>
         <h1 className="jacquard-24-regular text-white/85 drop-shadow text-3xl lg:text-4xl text-center">
           Boogie Woogie <span className="text-orange-500">Supercon 2024</span>
         </h1>
 
-        <Link className="absolute top-10 flex justify-center lg:justify-end right-0 left-0 lg:right-20 lg:top-16 flex items-center drop-shadow" href="about">
+        <Link className="absolute top-10 flex justify-center lg:justify-end right-0 left-0 lg:right-20 lg:top-16 items-center drop-shadow" href="about">
           <CircleHelp className="text-black/80" />
           <span className="text-black/80 text-xl ml-1">About</span>
         </Link>
