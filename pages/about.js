@@ -11,7 +11,7 @@ export default function About() {
         <h1 className="text-2xl text-orange-500 text-center">About</h1>
 
         <p className="mt-5 text-lg text-white/80 drop-shadow">
-          This website was made with love by <Anchor href="https://www.instagram.com/nikolazaris">Niko</Anchor> and <Anchor href="https://www.instagram.com/cyril.engman/">Cyril</Anchor> for the attendees of Hackaday Supercon8. The website lets you to listen to recorded music and live music from the event.
+          This website was made with love by <Anchor href="https://www.instagram.com/nikolazaris">Niko</Anchor> and <Anchor href="https://www.instagram.com/cyril.engman/">Cyril</Anchor> for the attendees of Hackaday Supercon8. The website lets you listen to recorded music and live music from the event.
           The source code is available on <Anchor href="https://github.com/nlaz/supercon-demo-site">GitHub</Anchor>.
         </p>
 
