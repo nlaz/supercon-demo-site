@@ -1,11 +1,12 @@
 import * as api from "@/api";
 import React, { useEffect, useRef } from "react";
 import LivePlayer from "@/components/LivePlayer";
+import ReactionButton from "@/components/ReactionButton";
 import Track from "@/components/Track";
 import Head from "next/head";
 import { CircleHelp } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import EmojiConfetti from "@/components/EmojiConfetti";
 
 export default function Home({ tracks, channels }) {
   const trackRefs = useRef({});
@@ -43,19 +44,19 @@ export default function Home({ tracks, channels }) {
     <div className="w-100 bg-fuchsia-900/15 pixelify-sans-regular w-screen min-h-screen flex justify-center py-20">
       <div className="flex flex-col max-w-[520px] w-full">
         <Head>
-          <title>My page title</title>
+          <title>Boogie Woogie Supercon 2024</title>
         </Head>
         <h1 className="jacquard-24-regular text-white/85 drop-shadow text-3xl lg:text-4xl text-center">
           Boogie Woogie <span className="text-orange-500">Supercon 2024</span>
         </h1>
 
-        <Link className="absolute top-10 flex justify-center lg:justify-end right-0 left-0 lg:right-20 lg:top-16 items-center drop-shadow" href="about">
+        <Link className="outline-none ring-none absolute top-10 flex justify-center lg:justify-end right-0 left-0 lg:right-20 lg:top-16 items-center drop-shadow" href="about">
           <CircleHelp className="text-black/80" />
           <span className="text-black/80 text-xl ml-1">About</span>
         </Link>
 
         <div className="flex mt-5">
-          {channels.map((channel) => (
+          {channels?.map((channel) => (
             <LivePlayer channel={channel} key={channel.id} />
           ))}
         </div>
@@ -68,6 +69,7 @@ export default function Home({ tracks, channels }) {
             </div>
           ))}
         </div>
+        <ReactionButton />
       </div>
     </div>
   );
