@@ -1,31 +1,29 @@
 import { useState, useEffect, useCallback } from "react";
-import { useSocket } from "../contexts/SocketContext";
 import EmojiConfetti from "./EmojiConfetti";
 
 const ReactionButton = () => {
-  const { socket, isConnected } = useSocket();
   const [showEffect, setShowEffect] = useState(false);
   const [globalClickTimes, setGlobalClickTimes] = useState([]);
   const [clickIntensity, setClickIntensity] = useState(0);
 
-  useEffect(() => {
-    if (!socket) return;
+  // useEffect(() => {
+  //   if (!socket) return;
 
-    socket.on("reactionReceived", (data) => {
-      setGlobalClickTimes((prevTimes) => {
-        const newTimes = [...prevTimes, data.timestamp];
-        const cutoffTime = Date.now() - 5000;
-        return newTimes.filter((time) => time > cutoffTime);
-      });
+  //   socket.on("reactionReceived", (data) => {
+  //     setGlobalClickTimes((prevTimes) => {
+  //       const newTimes = [...prevTimes, data.timestamp];
+  //       const cutoffTime = Date.now() - 5000;
+  //       return newTimes.filter((time) => time > cutoffTime);
+  //     });
 
-      setShowEffect(true);
-      setTimeout(() => setShowEffect(false), 1000);
-    });
+  //     setShowEffect(true);
+  //     setTimeout(() => setShowEffect(false), 1000);
+  //   });
 
-    return () => {
-      socket?.off("reactionReceived");
-    };
-  }, [socket]);
+  //   return () => {
+  //     socket?.off("reactionReceived");
+  //   };
+  // }, [socket]);
 
   useEffect(() => {
     const calculateIntensity = () => {
@@ -49,13 +47,13 @@ const ReactionButton = () => {
   }, [globalClickTimes]);
 
   const handleClick = () => {
-    if (!socket) return;
+    // if (!socket) return;
 
-    const timestamp = Date.now();
+    // const timestamp = Date.now();
 
-    socket.emit("reaction", {
-      timestamp,
-    });
+    // socket.emit("reaction", {
+    //   timestamp,
+    // });
 
     setGlobalClickTimes((prev) => [...prev, timestamp]);
 

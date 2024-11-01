@@ -69,7 +69,6 @@ export default function Home({ tracks, channels }) {
             </div>
           ))}
         </div>
-        <ReactionButton />
       </div>
     </div>
   );
