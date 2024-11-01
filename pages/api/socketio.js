@@ -2,7 +2,15 @@ import { Server } from "socket.io";
 
 const ioHandler = (req, res) => {
   if (!res.socket.server.io) {
-    const io = new Server(res.socket.server);
+    const io = new Server(res.socket.server, {
+      path: "/api/socketio",
+      addTrailingSlash: false,
+      cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+      }
+    });
+
     res.socket.server.io = io;
 
     io.on("connection", (socket) => {

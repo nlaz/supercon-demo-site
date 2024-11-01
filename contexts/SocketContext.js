@@ -10,7 +10,10 @@ export function SocketProvider({ children }) {
   useEffect(() => {
     const initSocket = async () => {
       await fetch("/api/socketio");
-      const socketIo = io();
+      const socketIo = io({
+        path: "/api/socketio",
+        addTrailingSlash: false
+      });
 
       socketIo.on("connect", () => {
         console.log("Connected to Socket.IO");
