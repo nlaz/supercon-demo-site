@@ -11,11 +11,9 @@ const ReactionButton = () => {
   useEffect(() => {
     if (!socket) return;
 
-    // Listen for reactions from other clients
     socket.on("reactionReceived", (data) => {
       setGlobalClickTimes((prevTimes) => {
         const newTimes = [...prevTimes, data.timestamp];
-        // Keep only last 5 seconds of clicks
         const cutoffTime = Date.now() - 5000;
         return newTimes.filter((time) => time > cutoffTime);
       });
@@ -24,27 +22,22 @@ const ReactionButton = () => {
       setTimeout(() => setShowEffect(false), 1000);
     });
 
-    // Clean up socket listener
     return () => {
       socket?.off("reactionReceived");
     };
   }, [socket]);
 
-  // Calculate click intensity based on global clicks
   useEffect(() => {
     const calculateIntensity = () => {
       const now = Date.now();
       const recentClicks = globalClickTimes.filter((time) => now - time < 2000);
 
-      // Calculate intensity based on number of clicks in last 2 seconds
       const intensity = recentClicks.length;
       setClickIntensity(intensity);
     };
 
-    // Update intensity whenever global clicks change
     calculateIntensity();
 
-    // Clean up old clicks periodically
     const cleanup = setInterval(() => {
       setGlobalClickTimes((prevTimes) => {
         const cutoffTime = Date.now() - 5000;
@@ -60,17 +53,17 @@ const ReactionButton = () => {
 
     const timestamp = Date.now();
 
-    // Emit the click event to all clients
     socket.emit("reaction", {
       timestamp,
     });
 
-    // Add click to local state (the socket event will handle adding it back)
     setGlobalClickTimes((prev) => [...prev, timestamp]);
 
     setShowEffect(true);
     setTimeout(() => setShowEffect(false), 1000);
   };
+
+  if (!isConnected) return null
 
   return (
     <>
